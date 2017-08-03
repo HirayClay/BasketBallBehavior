@@ -3,6 +3,8 @@
     <declare-styleable name="TeamLogoBehavior">
         <attr name="offsetY" format="dimension" />
         <attr name="offsetX" format="dimension" />
+        <attr name="logoId" format="reference" />
+        <attr name="dependencyId" format="reference" />
         <attr name="offsetSide" format="enum">
             <enum name="left" value="0" />
             <enum name="right" value="1" />

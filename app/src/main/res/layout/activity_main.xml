@@ -1,57 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/ab_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
 
             <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:titleMargin="0dp"
                 android:layout_height="50dp"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/nav_btn_back_nor"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:titleMargin="0dp" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
                 app:layout_collapseMode="pin">
 
-                <FrameLayout
+                <TextView
+                    android:id="@+id/header_title"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:alpha="1"
+                    android:gravity="center"
+                    android:text="湖人vs小牛"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/header_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="湖人vs小牛"
-                        android:alpha="1"
-                        android:textColor="@android:color/white"
-                        android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/vs_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:alpha="0"
+                    android:gravity="center"
+                    android:text="—"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/vs_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="---"
-                        android:alpha="0"
-                        android:gravity="center"
-                        android:textColor="@android:color/white"
-                        android:textStyle="bold" />
-
-                </FrameLayout>
-            </android.support.v7.widget.Toolbar>
+            </FrameLayout>
 
             <LinearLayout
                 android:id="@+id/content"
@@ -91,43 +97,43 @@
             </LinearLayout>
         </android.support.design.widget.CollapsingToolbarLayout>
 
-                    <LinearLayout
-                        app:layout_scrollFlags="enterAlways"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_scrollFlags="enterAlways">
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:padding="10dp"
-                            android:text="Item1"
-                            android:textColor="@android:color/white" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Item1"
+                android:textColor="@android:color/white" />
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:padding="10dp"
-                            android:text="Item2"
-                            android:textColor="@android:color/white" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Item2"
+                android:textColor="@android:color/white" />
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:padding="10dp"
-                            android:text="Item3"
-                            android:textColor="@android:color/white" />
-                    </LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Item3"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
     </android.support.design.widget.AppBarLayout>
 
 
-    <LinearLayout
+    <io.basketball.basketball.LinearLayoutEx
         android:id="@+id/left_team"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
@@ -136,7 +142,7 @@
         android:elevation="10dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_behavior="io.basketball.basketball.TeamLogoBehavior"
+        app:logoId="@+id/left_logo"
         app:offsetSide="left"
         app:offsetX="30dp"
         app:offsetY="80dp">
@@ -152,10 +158,11 @@
             android:layout_height="wrap_content"
             android:text="120"
             android:textColor="@android:color/white" />
-    </LinearLayout>
+    </io.basketball.basketball.LinearLayoutEx>
 
 
-    <LinearLayout
+
+    <io.basketball.basketball.LinearLayoutEx
         android:id="@+id/right_team"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
@@ -165,7 +172,7 @@
         android:elevation="10dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_behavior="io.basketball.basketball.TeamLogoBehavior"
+        app:logoId="@+id/right_logo"
         app:offsetSide="right"
         app:offsetX="-30dp"
         app:offsetY="80dp">
@@ -181,7 +188,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/bull" />
-    </LinearLayout>
+    </io.basketball.basketball.LinearLayoutEx>
 
 
     <android.support.v4.widget.NestedScrollView
