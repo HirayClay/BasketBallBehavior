@@ -1,14 +1,24 @@
 package io.basketball.basketball
 
 import android.animation.ObjectAnimator
+import android.app.Application
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.util.Log
 import android.view.Menu
 import android.view.View
+import android.widget.Toast
+import io.basketball.basketball.page.FragmentAdapter
+import io.basketball.basketball.page.ItemFragment
+import io.basketball.basketball.page.dummy.DummyContent
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ItemFragment.OnListFragmentInteractionListener {
+    override fun onListFragmentInteraction(item: DummyContent.DummyItem?) {
+        showToast("you click" + item.toString())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,6 +26,16 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         setUpAlphaListener()
+
+
+        nestedscrollview.isFillViewport=true
+        val fragments = arrayListOf(ItemFragment.newInstance(1), ItemFragment.newInstance(1), ItemFragment.newInstance(1))
+        val titles = arrayListOf("lol", "dota2", "overwatch")
+        val adapter = FragmentAdapter(supportFragmentManager, fragments, titles)
+        view_pager.adapter = adapter
+        tab_layout.setupWithViewPager(view_pager)
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -60,6 +80,10 @@ class MainActivity : AppCompatActivity() {
                 .setDuration(300)
                 .start()
 
+    }
+
+    fun Context.showToast(msg: String): Unit {
+        Toast.makeText(applicationContext, msg, Toast.LENGTH_LONG).show()
     }
 
 

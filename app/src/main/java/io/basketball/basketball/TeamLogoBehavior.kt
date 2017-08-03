@@ -15,13 +15,13 @@ import android.view.ViewGroup
  *@author CJJ
  */
 open class TeamLogoBehavior : CoordinatorLayout.Behavior<View>, AppBarLayout.OnOffsetChangedListener {
-    var offsetY: Int
-    var offsetX: Int
+    var offsetY: Int = 0
+    var offsetX: Int = 0
     val minScale = 0.5f
     var Y: Float = 0f
     var X: Float = 0f
     var side: Int = 0
-    var logoId: Int
+    var logoId: Int = 0
     var logo: AppCompatImageView? = null
     lateinit var child: ViewGroup
 
@@ -35,6 +35,8 @@ open class TeamLogoBehavior : CoordinatorLayout.Behavior<View>, AppBarLayout.OnO
         ta.recycle()
 
     }
+
+    constructor() : super()
 
 
     override fun layoutDependsOn(parent: CoordinatorLayout?, view: View, dependency: View): Boolean {
@@ -53,10 +55,10 @@ open class TeamLogoBehavior : CoordinatorLayout.Behavior<View>, AppBarLayout.OnO
     }
 
     override fun onDependentViewChanged(parent: CoordinatorLayout?, child: View?, dependency: View?): Boolean {
-        var appBarLayout = dependency as AppBarLayout
-        var layoutParams = appBarLayout.layoutParams as CoordinatorLayout.LayoutParams
-        var behavior = layoutParams.behavior as android.support.design.widget.AppBarLayout.Behavior
-        var topAndBottomOffset = behavior.topAndBottomOffset
+        val appBarLayout = dependency as AppBarLayout
+        val layoutParams = appBarLayout.layoutParams as CoordinatorLayout.LayoutParams
+        val behavior = layoutParams.behavior as android.support.design.widget.AppBarLayout.Behavior
+        val topAndBottomOffset = behavior.topAndBottomOffset
         if (BuildConfig.DEBUG)
             Log.i(TeamLogoBehavior::class.java.name, "Offset====== $topAndBottomOffset")
 
